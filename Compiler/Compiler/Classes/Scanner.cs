@@ -80,7 +80,7 @@ namespace Compiler.Classes
                         i--;
                     }
                     //    temp is identifier
-                    else if(SourceCode[i] == ';' || SourceCode[i] == ' ' || SourceCode[i] == ':') // To know if this a valid identifier e.g. var< is NOT allowed
+                    else if(Identifier_checker(SourceCode[i])) // To know if this a valid identifier e.g. var< is NOT allowed
                     {
                         list_Tokens.Add(new Token { lexeme = temp, tokenType = Preserved_Words["identifier"] });
                         temp = "";
@@ -150,7 +150,7 @@ namespace Compiler.Classes
                                 i++;
                             }
                             // valid comment
-                            if(i+1 < SourceCode.Length && (SourceCode[i] == '*' && SourceCode[i+1] == '/')) { i++; }
+                            if(i+1 < SourceCode.Length && (SourceCode[i] == '*' && SourceCode[i+1] == '/')) { i++; temp = ""; }
                             else
                             {
                                 errors.Add(temp);
@@ -198,6 +198,17 @@ namespace Compiler.Classes
                     
                 }
             }
+        }
+
+        private bool Identifier_checker(char c)
+        {
+            string S = ":;, +-*/";
+            for(int i = 0; i < S.Length; i++)
+            {
+                if (c == S[i])
+                    return true;
+            }
+            return false;
         }
     }
 }
