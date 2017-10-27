@@ -34,7 +34,16 @@ namespace Compiler.Classes
 
         //seperators
         comma, // ,
-        semicolon // ;
+        semicolon, // ;
+
+        //function cll parantheses
+        Right_parantheses,
+        Left_parantheses,
+        Right_CurlyPrakets,
+        Left_CurlyPrakets,
+
+        //string data type
+        StringDatatype
     }
     class Token
     {

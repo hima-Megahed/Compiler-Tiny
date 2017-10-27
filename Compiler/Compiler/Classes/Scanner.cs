@@ -46,7 +46,11 @@ namespace Compiler.Classes
                 {"&&", TokenType.And },
                 {"||", TokenType.Or },
                 {",", TokenType.comma },
-                {";", TokenType.semicolon }
+                {";", TokenType.semicolon },
+                {"(", TokenType.Left_parantheses },
+                {")", TokenType.Right_parantheses},
+                {"{", TokenType.Left_CurlyPrakets },
+                {"}", TokenType.Right_CurlyPrakets }
             };
             list_Tokens = new List<Token>();
             errors = new List<string>();
@@ -73,7 +77,7 @@ namespace Compiler.Classes
                     }
                     // current char is "{" - "}"  or white space or any operator or undefined char
                     //    temp is preserved word
-                    if (Preserved_Words.ContainsKey(temp))
+                    if (i < SourceCode.Length && Preserved_Words.ContainsKey(temp))
                     {
                         list_Tokens.Add(new Token { lexeme = temp, tokenType = Preserved_Words[temp] });
                         temp = "";
@@ -95,15 +99,17 @@ namespace Compiler.Classes
                 // current char is number
                 else if(char.IsDigit(SourceCode[i]))
                 {
+                    int dot = 0;
                     temp += SourceCode[i];
                     i++;
                     while(i < SourceCode.Length && (SourceCode[i] == '.' || char.IsDigit(SourceCode[i])))
                     {
+                        if (SourceCode[i] == '.') dot++;
                         temp += SourceCode[i];
                         i++;
                     }
                     // save the number in tokens
-                    if(char.IsWhiteSpace(SourceCode[i]) || SourceCode[i] == ',' || SourceCode[i] == ';')
+                    if (i < SourceCode.Length && (char.IsWhiteSpace(SourceCode[i]) || SourceCode[i] == ',' || SourceCode[i] == ';' || SourceCode[i] == '+' || SourceCode[i] == '-' || SourceCode[i] == '*' || SourceCode[i] == '/' || SourceCode[i] == ')' || SourceCode[i] == '(') && (dot == 0 || dot == 1))
                     {
                         list_Tokens.Add(new Token { lexeme = temp, tokenType = TokenType.number });
                         temp = "";
@@ -176,7 +182,7 @@ namespace Compiler.Classes
                     // check if valid string
                     if(i < SourceCode.Length && SourceCode[i] == '"')
                     {
-                        list_Tokens.Add(new Token { lexeme = temp, tokenType = TokenType.String });
+                        list_Tokens.Add(new Token { lexeme = temp, tokenType = TokenType.StringDatatype });
                         temp = "";
                         i++;
                     }
@@ -195,14 +201,15 @@ namespace Compiler.Classes
                         temp += SourceCode[i];
                         i++;
                     }
-                    
+                    errors.Add(temp);
+                    temp = "";
                 }
             }
         }
 
         private bool Identifier_checker(char c)
         {
-            string S = ":;, +-*/";
+            string S = ":;, +-*/()";
             for(int i = 0; i < S.Length; i++)
             {
                 if (c == S[i])
