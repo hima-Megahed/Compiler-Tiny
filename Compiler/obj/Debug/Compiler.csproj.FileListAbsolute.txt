@@ -1,0 +1,10 @@
+F:\College Year 4\Year 4 [CS]\compiler\Compiler\Compiler\Compiler\bin\Debug\Compiler.exe.config
+F:\College Year 4\Year 4 [CS]\compiler\Compiler\Compiler\Compiler\bin\Debug\Compiler.exe
+F:\College Year 4\Year 4 [CS]\compiler\Compiler\Compiler\Compiler\bin\Debug\Compiler.pdb
+F:\College Year 4\Year 4 [CS]\compiler\Compiler\Compiler\Compiler\obj\Debug\Compiler.csprojResolveAssemblyReference.cache
+F:\College Year 4\Year 4 [CS]\compiler\Compiler\Compiler\Compiler\obj\Debug\Compiler.Form1.resources
+F:\College Year 4\Year 4 [CS]\compiler\Compiler\Compiler\Compiler\obj\Debug\Compiler.Properties.Resources.resources
+F:\College Year 4\Year 4 [CS]\compiler\Compiler\Compiler\Compiler\obj\Debug\Compiler.csproj.GenerateResource.Cache
+F:\College Year 4\Year 4 [CS]\compiler\Compiler\Compiler\Compiler\obj\Debug\Compiler.csproj.CoreCompileInputs.cache
+F:\College Year 4\Year 4 [CS]\compiler\Compiler\Compiler\Compiler\obj\Debug\Compiler.exe
+F:\College Year 4\Year 4 [CS]\compiler\Compiler\Compiler\Compiler\obj\Debug\Compiler.pdb
